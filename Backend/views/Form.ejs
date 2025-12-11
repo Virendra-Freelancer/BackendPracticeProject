@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100%;
+            margin: auto;
+            height: 100vh;
+            background-color: #3509b9;
+            display: flex;
+        }
+
+        .form-container {
+            margin: auto;
+            background-color: white;
+            padding: 22px;
+            border-radius: 8px;
+        }
+
+        form {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form,
+        input {
+            padding: 8px 16px;
+            outline: none;
+        }
+
+        .gender {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 0px;
+
+        }
+
+        .gender>div {
+            margin-right: 23px;
+        }
+
+        select {
+            padding: 8px 16px;
+            margin-bottom: 4px;
+        }
+
+        .btn {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="form-container">
+            <h1 class="btn">X</h1>
+            <% if (error.length>0) { %>
+                <div>
+                    <ul>
+                        <% error.forEach(errors=> { %>
+                            <li>
+                                <%= errors.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+        </div>
+        <div class="form-container">
+            <h4>Register Form</h4>
+            <form onsubmit="handleSubmit((e)=>e.preventDefault())" action="/register" method="post">
+                <label for="name">Full-Name</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+
+                <div class="gender">
+                    <div>
+                        <input type="radio" name="gender" id="male" value="Male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="gender" id="female" value="Female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+
+                <label for="country">Select Country</label>
+                <select name="country" id="country">
+                    <option value="">-- Select --</option>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="Asteria">Asteria</option>
+                    <option value="England">England</option>
+                </select>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </header>
+    <script>
+        const button = document.querySelector('.btn');
+        button.addEventListener('click', (e) => {
+            button.parentElement.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
